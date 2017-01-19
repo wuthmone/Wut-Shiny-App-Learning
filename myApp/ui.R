@@ -13,30 +13,29 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Plot Random Numbers"),
+  titlePanel("Predict Horsepower from MPG"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-       numericInput("numeric","How many Random Numnber should be plotted?",
-                    value = 1000, min = 1, max = 1000, step = 1),
-       sliderInput("sliderX", "Pick Min and Max X values",
-                   -100,100, value = c(-50,50)),
-       
-       sliderInput("sliderY", "Pick Min and Max X values",
-                   -100,100, value = c(-50,50)),
-       checkboxInput("show_xlab","Show/Hide X Axis Label",
-                     value = T),
-       checkboxInput("show_ylab","Show/Hide Y Axis Label",
+      
+       sliderInput("slideMGP", "Enter MPG",
+                   10,35, value = 20),
+       checkboxInput("showModel1","Show/Hide Model 1",
                      value = T),   
-       checkboxInput("show_title", "Show/Hide Title")
+       checkboxInput("showModel2", "Show/Hide Model 2", value = T),
+       submitButton("Submit")
       
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-       h3("Graph of Random Points"),
-       plotOutput("plot1")
+       
+       plotOutput("plot1"),
+       h3("Predict Horsepower from Model 1: "),
+       textOutput("pred1"),
+       h3("Predicted Horsepower from Model 2:"),
+       textOutput("pred2")
        
     )
   )
